@@ -1,2 +1,2 @@
 # mini-vueRouter
-在vue3 中实现 vue-router 4
+在vue 中实现 vue-router 3
