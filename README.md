@@ -1,2 +1,19 @@
-# mini-vueRouter
-在vue 中实现 vue-router 3
+# mini-router3
+
+## Project setup
+```
+yarn install
+```
+
+### Compiles and hot-reloads for development
+```
+yarn serve
+```
+
+### Compiles and minifies for production
+```
+yarn build
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
