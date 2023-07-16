@@ -22,11 +22,17 @@ export class HashHistory extends Base {
 
     setupListener() {// 稍后需要调用次方法，监控hash 值的变化
         window.addEventListener('hashchange', function () {
-
+            this.transitionTo(getHash()) // 这里会监听hash 的变化，我们通过
         })
     }
 
-    getCurrentLocation(){
+    getCurrentLocation() {
         return getHash()
+    }
+
+    push(location) {
+        this.transitionTo(location, () => {
+            window.location.hash = location
+        })
     }
 }

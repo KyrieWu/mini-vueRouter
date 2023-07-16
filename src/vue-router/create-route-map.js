@@ -16,7 +16,8 @@ function addRouteRecord(route, pathMap, parentRecord) {
         path,
         component: route.component,
         props: route.props,
-        meta: route.meta
+        meta: route.meta,
+        parent: parentRecord
     }
     if (!pathMap[path]) {
         pathMap[path] = record

@@ -8,6 +8,7 @@ class VueRouter {
     constructor(options) {
         // 用户传递的路由配置，我们可以对这个配置
         let routes = options.routes || []
+        this.beforeEachHooks = []
 
         //变成映射表 方便后续的匹配操作，可以匹配也可以添加新的路由
         this.matcher = createMatcher(routes)
@@ -32,8 +33,16 @@ class VueRouter {
         return this.matcher.match(location)
     }
 
+    listen(cb) {
+        this.cb = cb
+    }
+
     push(location) {
-        this.history.transitionTo(location)
+        return this.history.push(location)
+    }
+
+    beforeEach(cb) {
+        this.beforeEachHooks.push(cb)
     }
 
     init(app) {
@@ -44,6 +53,10 @@ class VueRouter {
         // 根据路径匹配到对应的组件 来渲染，之后监听路由变化
         history.transitionTo(history.getCurrentLocation(), () => {
             history.setupListener() // 监听路由的变化
+        })
+
+        history.listen((newRoute) => { // 这个目的就是更新 _route 的值是它能够发生变化,数据变化会自动渲染
+            app._route = newRoute
         })
 
     }
